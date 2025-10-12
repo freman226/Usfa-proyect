@@ -142,10 +142,15 @@ nav a:hover {
 }
 
 .cart-btn {
+    position: relative;
+}
+
+.cart-btn {
+    position: relative;
     background: transparent;
     border: none;
     padding: 8px;
-    cursor: pointer;
+    cursor: default;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -158,6 +163,59 @@ nav a:hover {
 .cart-btn img {
     width: 32px;
     height: 32px;
+}
+
+.cart-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 260px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    padding: 16px;
+    z-index: 100;
+}
+
+.cart-btn:hover .cart-menu,
+.cart-menu:hover {
+    display: block;
+}
+
+.cart-menu h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    text-align: center;
+    color: #222;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.cart-menu .checkout-btn {
+    width: 100%;
+    padding: 8px;
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    box-sizing: border-box;
+    display: block;
 }
 
 footer {

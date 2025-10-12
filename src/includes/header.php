@@ -13,8 +13,13 @@
             <div class="title">
                 <h1>Tienda de Guitarras</h1>
             </div>
-            <button class="cart-btn">
+            <div class="cart-btn" id="cart-btn">
                 <img src="/img/carrito.png" alt="Carrito" />
-            </button>
+                <div class="cart-menu" id="cart-menu">
+                    <h3>Carrito de compras</h3>
+                    <ul id="cart-items"></ul>
+                    <button id="checkout-btn" class="checkout-btn">Realizar compra</button>
+                </div>
+            </div>
         </div>
     </header>
