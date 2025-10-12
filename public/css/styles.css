@@ -37,6 +37,10 @@ nav a:hover {
     overflow: hidden;
 }
 
+.container h1 {
+    text-align: center;
+}
+
 .product {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -102,6 +106,11 @@ nav a:hover {
 .producto p {
     margin: 5px 0;
     color: #333;
+    text-align: justify;
+}
+
+.producto p strong {
+    font-weight: bold;
 }
 
 .add-cart-btn {
@@ -133,13 +142,11 @@ nav a:hover {
 }
 
 .cart-btn {
-    background: #fff;
+    background: transparent;
     border: none;
-    border-radius: 50%;
     padding: 8px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: box-shadow 0.2s;
+    border-radius: 50%;
     display: flex;
     align-items: center;
 }
@@ -161,4 +168,15 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.title h1 {
+    font-size: 3.1em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    letter-spacing: 2px;
 }

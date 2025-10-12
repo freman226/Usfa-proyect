@@ -13,8 +13,8 @@ $productos = getProductos();
                 <img src="/img/<?php echo htmlspecialchars($producto['image']); ?>" alt="<?php echo htmlspecialchars($producto['name']); ?>">
                 <div class="info">
                     <h2><?php echo htmlspecialchars($producto['name']); ?></h2>
-                    <p>Descripción: <?php echo htmlspecialchars($producto['description']); ?></p>
-                    <p>Precio: $<?php echo htmlspecialchars($producto['price']); ?></p>
+                    <p><?php echo htmlspecialchars($producto['description']); ?></p>
+                    <p><strong>Precio: $<?php echo htmlspecialchars($producto['price']); ?></strong></p>
                     <form method="POST" action="/product_endpoint.php">
                         <input type="hidden" name="name" value="<?php echo htmlspecialchars($producto['name']); ?>">
                         <input type="hidden" name="description" value="<?php echo htmlspecialchars($producto['description']); ?>">
