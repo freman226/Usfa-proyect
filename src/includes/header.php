@@ -10,16 +10,11 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="title">
+            <div id="title" class="title">
                 <h1>Tienda de Guitarras</h1>
             </div>
-            <div class="cart-btn" id="cart-btn">
+            <button class="cart-btn" id="cart-btn">
                 <img src="/img/carrito.png" alt="Carrito" />
-                <div class="cart-menu" id="cart-menu">
-                    <h3>Carrito de compras</h3>
-                    <ul id="cart-items"></ul>
-                    <button id="checkout-btn" class="checkout-btn">Realizar compra</button>
-                </div>
-            </div>
+            </button>
         </div>
     </header>

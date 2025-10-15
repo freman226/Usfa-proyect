@@ -12,30 +12,21 @@ function updateCartMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartMenu();
+    //updateCartMenu();
 
-    // Evento para añadir productos al carrito
-    document.querySelectorAll('.add-cart-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const name = this.closest('.info').querySelector('h2').textContent;
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const index = cart.findIndex(item => item.name === name);
-            if (index > -1) {
-                cart[index].quantity += 1;
-            } else {
-                cart.push({ name, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartMenu();
+    const cartBtn = document.getElementById('cart-btn');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            window.location.href = 'index.php?page=compra';
         });
-    });
-
-    // Evento para realizar compra
-    document.getElementById('checkout-btn').addEventListener('click', function() {
-        alert('¡Compra realizada!');
-        localStorage.removeItem('cart');
-        updateCartMenu();
-    });
+    }
+    const home = document.getElementById('title');
+    if (home) {
+        home.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.php?page=productos';
+        });
+    }
 });
 

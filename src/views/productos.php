@@ -32,3 +32,26 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 ?>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const productoDiv = this.closest('.producto');
+            const name = productoDiv.querySelector('h2').textContent;
+            const price = productoDiv.querySelector('strong').textContent.replace('Precio: $', '').trim();
+            const image = productoDiv.querySelector('img').getAttribute('src');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const index = cart.findIndex(item => item.name === name);
+            if (index > -1) {
+                cart[index].quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Producto añadido al carrito');
+        });
+    });
+});
+</script>
+
