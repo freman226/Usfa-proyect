@@ -14,6 +14,9 @@ switch ($page) {
     case 'compra':
         require_once '../src/views/compra.php';
         break;
+    case 'pedidos':
+        require_once '../src/views/pedidos.php';
+        break;    
 }
 
 require_once '../src/includes/footer.php';
