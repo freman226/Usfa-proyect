@@ -16,5 +16,12 @@
             <button class="cart-btn" id="cart-btn">
                 <img src="/img/carrito.png" alt="Carrito" />
             </button>
+            <span class="user-icon">
+                <img src="/img/user.png" alt="Usuario" />
+                <div class="user-menu">
+                    <a href="index.php?page=pedidos">Pedidos</a>
+                    <a href="/logout.php">Cerrar Sesión</a>
+                </div>
+            </span>
         </div>
     </header>

@@ -28,5 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.php?page=productos';
         });
     }
+    const userIcon = document.querySelector('.user-icon');
+    if (userIcon) {
+        userIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+        });
+        document.addEventListener('click', function() {
+            userIcon.classList.remove('active');
+        });
+    }
 });
 

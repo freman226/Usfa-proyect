@@ -17,6 +17,12 @@ switch ($page) {
     case 'pedidos':
         require_once '../src/views/pedidos.php';
         break;    
+    case 'login':
+        require_once '../src/views/login.php';
+        break;
+    case 'register':
+        require_once '../src/views/register.php';
+        break;
 }
 
 require_once '../src/includes/footer.php';
