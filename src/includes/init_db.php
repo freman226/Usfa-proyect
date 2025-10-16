@@ -30,4 +30,20 @@ try {
 } catch (PDOException $e) {
     echo "Error al crear la tabla invoice: " . $e->getMessage();
 }
+
+// Crear tabla users
+$sqlUsers = "CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    fullname VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+try {
+    $pdo->exec($sqlUsers);
+} catch (PDOException $e) {
+    echo "Error al crear la tabla users: " . $e->getMessage();
+}
 ?>

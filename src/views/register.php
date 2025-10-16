@@ -22,4 +22,7 @@
 
         <button type="submit" class="register-btn">Registrarse</button>
     </form>
+    <p class="register-login-msg">
+        ¿Ya tienes una cuenta? Inicia sesión <a href="index.php?page=login">aquí</a>
+    </p>
 </div>

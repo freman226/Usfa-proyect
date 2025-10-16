@@ -158,10 +158,13 @@ nav a:hover {
 }
 
 .user-icon img {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: #fff;
+    object-fit: cover;
+    display: block;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
 
 .cart-btn {
@@ -457,8 +460,9 @@ footer {
     position: relative;
     display: flex;
     align-items: center;
-    margin-right: 50px;
+    margin-right: 8px; /* reducido para acercar el icono al nombre */
 }
+
 .user-icon:hover{
     cursor: pointer;
 }
@@ -598,4 +602,85 @@ footer {
 
 .register-btn:hover {
     background: #1565c0;
+}
+
+.login-register-msg {
+    margin-top: 18px;
+    font-size: 1em;
+    color: #444;
+}
+
+.login-register-msg a {
+    color: #1976d2;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-login-msg {
+    margin-top: 18px;
+    font-size: 1em;
+    color: #444;
+}
+
+.register-login-msg a {
+    color: #1976d2;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-success {
+    color: #43a047;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.register-error {
+    color: #e53935;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.username-header {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    padding: 4px 8px; /* menos padding para quedar más pegado */
+    border-radius: 18px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s, transform 0.12s;
+}
+
+.user-area {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* menos separación entre icono y nombre */
+    margin-left: 0; /* eliminar margen extra */
+}
+
+/* efecto al pasar o al hacer clic (si usas .active) */
+.user-area:hover .username-header,
+.user-area.active .username-header {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+}
+
+/* versión móvil: ocultar texto largo y mostrar solo icono */
+@media (max-width: 520px) {
+    .username-header {
+        display: none;
+    }
 }

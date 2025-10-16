@@ -1,7 +1,3 @@
-<?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\views\login.php
-?>
-
 <div class="login-container">
     <h1>Iniciar Sesión</h1>
     <form method="POST" action="login.php" class="login-form">
@@ -13,4 +9,7 @@
 
         <button type="submit" class="login-btn">Ingresar</button>
     </form>
+    <p class="login-register-msg">
+        ¿No tienes una cuenta? Regístrate <a href="index.php?page=register">aquí</a>
+    </p>
 </div>
