@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // usar json_encode para escapar correctamente el nombre en JS
             echo "<script>
-                alert('¡Bienvenido, ' + " . json_encode($user['username']) . " + '!');
                 window.location.href = 'index.php?page=productos';
             </script>";
             exit;

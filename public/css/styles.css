@@ -84,6 +84,7 @@ nav a:hover {
     gap: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     transition: box-shadow 0.2s;
+    position: relative;
 }
 
 .producto:hover {
@@ -683,4 +684,44 @@ footer {
     .username-header {
         display: none;
     }
+}
+
+.delete-btn {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #e53935;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, transform .08s;
+    padding: 0; /* asegurar centrado del SVG */
+}
+
+.delete-btn svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: #fff; /* usa currentColor desde el SVG */
+}
+
+.delete-btn:hover {
+    background: #c62828;
+    transform: translateY(-2px);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+}
+
+/* si quieres ocultarlo en pantallas pequeñas */
+@media (max-width: 520px) {
+    .delete-btn { right: 12px; bottom: 12px; width: 34px; height: 34px; }
 }

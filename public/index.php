@@ -7,8 +7,8 @@ require_once '../src/includes/init_db.php';
 // Enrutamiento simple
 $page = $_GET['page'] ?? 'productos';
 
-// Páginas que requieren autenticación
-$protectedPages = ['productos', 'compra'];
+// Páginas que requieren autenticación (cualquiera autenticado)
+$protectedPages = ['productos', 'compra', 'create_product'];
 
 // Si la página está protegida y no hay sesión, redirigir antes de emitir HTML
 if (in_array($page, $protectedPages, true) && !isset($_SESSION['user_id'])) {
@@ -16,13 +16,13 @@ if (in_array($page, $protectedPages, true) && !isset($_SESSION['user_id'])) {
     exit;
 }
 
-if ($page === 'pedidos') {
+// Restricción específica: solo admin puede acceder a 'pedidos' y 'create_product'
+if (in_array($page, ['pedidos', 'create_product'], true)) {
     if (!isset($_SESSION['user_id'])) {
         header('Location: index.php?page=login');
         exit;
     }
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-        // usuario logueado pero no admin -> redirige a productos (o mostrar 403)
         header('Location: index.php?page=productos');
         exit;
     }
@@ -44,6 +44,9 @@ switch ($page) {
         break;
     case 'pedidos':
         require_once __DIR__ . '/../src/views/pedidos.php';
+        break;
+    case 'create_product':
+        require_once __DIR__ . '/../src/views/create_product.php';
         break;
     default:
         require_once __DIR__ . '/../src/views/productos.php';

@@ -30,5 +30,8 @@
             </span>
             <?php endif; ?>
 
+            <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <a href="index.php?page=create_product" class="admin-link">Crear producto</a>
+            <?php endif; ?>
         </div>
     </header>

@@ -59,7 +59,7 @@ if ($colCheck->fetchColumn() == 0) {
 }
 
 // Opcional: crear un admin inicial si no existe (cambiar credenciales por defecto)
-$adminEmail = 'admin@tudominio.com';
+$adminEmail = 'admin@email.com';
 $adminUser = 'admin';
 $adminPass = 'admin123'; // cambia esto ahora mismo
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
