@@ -1,5 +1,6 @@
 <?php
 // filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\public\login.php
+session_start();
 require_once '../src/includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['username'];
 
             echo "<script>
-                alert('¡Bienvenido, {$user['username']}!');
                 window.location.href = 'index.php?page=productos';
             </script>";
             exit;

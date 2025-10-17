@@ -1,11 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/db.php';
 
-// if (!isset($_SESSION['user_id'])) {
-//     header('Location: index.php?page=login');
-//     exit;
-// }
-
 require_once __DIR__ . '/../includes/header.php';
 
 $invoices = $pdo->query('SELECT * FROM invoice ORDER BY order_date DESC')->fetchAll();

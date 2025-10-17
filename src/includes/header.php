@@ -16,6 +16,8 @@
             <button class="cart-btn" id="cart-btn">
                 <img src="/img/carrito.png" alt="Carrito" />
             </button>
+
+            <?php if (isset($_SESSION['username'])): ?>
             <span class="user-area">
                 <span class="user-icon">
                     <img src="/img/user.png" alt="Usuario" />
@@ -24,9 +26,9 @@
                         <a href="/logout.php">Cerrar Sesión</a>
                     </div>
                 </span>
-                <?php if (isset($_SESSION['username'])): ?>
-                    <span class="username-header"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                <?php endif; ?>
+                <span class="username-header"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
             </span>
+            <?php endif; ?>
+
         </div>
     </header>
