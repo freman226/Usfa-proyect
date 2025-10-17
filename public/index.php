@@ -8,12 +8,24 @@ require_once '../src/includes/init_db.php';
 $page = $_GET['page'] ?? 'productos';
 
 // Páginas que requieren autenticación
-$protectedPages = ['productos', 'pedidos', 'compra'];
+$protectedPages = ['productos', 'compra'];
 
 // Si la página está protegida y no hay sesión, redirigir antes de emitir HTML
 if (in_array($page, $protectedPages, true) && !isset($_SESSION['user_id'])) {
     header('Location: index.php?page=login');
     exit;
+}
+
+if ($page === 'pedidos') {
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: index.php?page=login');
+        exit;
+    }
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        // usuario logueado pero no admin -> redirige a productos (o mostrar 403)
+        header('Location: index.php?page=productos');
+        exit;
+    }
 }
 
 // Ahora sí incluir header (envía HTML)

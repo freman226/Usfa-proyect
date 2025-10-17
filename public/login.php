@@ -13,11 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Aquí guardas los datos en la sesión
+            // guardar id, username y role en la sesión
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
 
+            // usar json_encode para escapar correctamente el nombre en JS
             echo "<script>
+                alert('¡Bienvenido, ' + " . json_encode($user['username']) . " + '!');
                 window.location.href = 'index.php?page=productos';
             </script>";
             exit;

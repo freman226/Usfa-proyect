@@ -31,19 +31,46 @@ try {
     echo "Error al crear la tabla invoice: " . $e->getMessage();
 }
 
-// Crear tabla users
+// crear tabla users (si no existe) con columna role
 $sqlUsers = "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     fullname VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL
+    address VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
-
 try {
     $pdo->exec($sqlUsers);
 } catch (PDOException $e) {
-    echo "Error al crear la tabla users: " . $e->getMessage();
+    error_log("Error crear users: " . $e->getMessage());
+}
+
+// Si la tabla ya existía pero no tiene la columna role, añadirla
+$colCheck = $pdo->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'users' AND COLUMN_NAME = 'role'");
+$colCheck->execute();
+if ($colCheck->fetchColumn() == 0) {
+    try {
+        $pdo->exec("ALTER TABLE users ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'user'");
+    } catch (PDOException $e) {
+        error_log("Error añadiendo role: " . $e->getMessage());
+    }
+}
+
+// Opcional: crear un admin inicial si no existe (cambiar credenciales por defecto)
+$adminEmail = 'admin@tudominio.com';
+$adminUser = 'admin';
+$adminPass = 'admin123'; // cambia esto ahora mismo
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+$stmt->execute([$adminEmail]);
+if ($stmt->fetchColumn() == 0) {
+    $hash = password_hash($adminPass, PASSWORD_DEFAULT);
+    $insert = $pdo->prepare("INSERT INTO users (username, email, password, fullname, address, role) VALUES (?, ?, ?, ?, ?, 'admin')");
+    try {
+        $insert->execute([$adminUser, $adminEmail, $hash, 'Administrador', 'Dirección admin']);
+    } catch (PDOException $e) {
+        error_log("Error insert admin: " . $e->getMessage());
+    }
 }
 ?>
