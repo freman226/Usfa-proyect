@@ -12,7 +12,6 @@ function updateCartMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    //updateCartMenu();
 
     const cartBtn = document.getElementById('cart-btn');
     if (cartBtn) {

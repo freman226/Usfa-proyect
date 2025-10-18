@@ -1,5 +1,4 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\controllers\ProductController.php
 require_once __DIR__ . '/../includes/db.php';
 
 function getProductos() {
@@ -14,7 +13,6 @@ function addProducto($name, $description, $price) {
     return $stmt->execute([$name, $description, $price]);
 }
 
-// Manejo del endpoint POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $description = $_POST['description'] ?? '';

@@ -2,7 +2,6 @@
 session_start();
 require_once __DIR__ . '/../src/includes/db.php';
 
-// sólo admin
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'admin') {
     header('Location: index.php?page=login');
     exit;
@@ -23,7 +22,6 @@ if ($id <= 0 || $name === '' || $price === '' || !is_numeric($price)) {
     exit;
 }
 
-// manejar imagen nueva
 $imageFilename = null;
 if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $tmp = $_FILES['image']['tmp_name'];
@@ -36,7 +34,6 @@ if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         if (!is_dir($destDir)) mkdir($destDir, 0755, true);
         move_uploaded_file($tmp, $destDir . $imageFilename);
 
-        // borrar la imagen anterior (opcional)
         $stmt = $pdo->prepare('SELECT image FROM products WHERE id = ?');
         $stmt->execute([$id]);
         $old = $stmt->fetchColumn();

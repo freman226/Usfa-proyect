@@ -1,5 +1,4 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\views\register.php
 ?>
 
 <div class="register-container">

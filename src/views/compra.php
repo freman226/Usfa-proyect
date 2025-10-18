@@ -31,7 +31,6 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    // Mostrar productos del carrito
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const compraLista = document.querySelector('.compra-lista');
     const compraTotal = document.querySelector('.compra-total');
@@ -61,11 +60,10 @@
             `;
             compraLista.appendChild(li);
 
-            // Eliminar producto al hacer clic en remove-btn
             li.querySelector('.remove-btn').addEventListener('click', () => {
-                cart.splice(idx, 1); // Elimina el producto del array
+                cart.splice(idx, 1); 
                 localStorage.setItem('cart', JSON.stringify(cart));
-                li.remove(); // Elimina el elemento de la vista
+                li.remove(); 
                 calcularTotal();
             });
         });
@@ -74,7 +72,6 @@
     function calcularTotal() {
         let total = 0;
         document.querySelectorAll('.compra-item').forEach(item => {
-            // El precio ya está multiplicado por la cantidad
             const precioTotalProducto = parseFloat(item.querySelector('.compra-precio').textContent.replace('$', ''));
             total += precioTotalProducto;
         });
@@ -99,7 +96,7 @@
                 cantidadSpan.textContent = cantidad;
                 actualizarPrecioPorProducto(item);
                 calcularTotal();
-                syncCartWithView(); // <-- Actualiza localStorage
+                syncCartWithView(); 
             });
         }
 
@@ -110,12 +107,11 @@
                 cantidadSpan.textContent = cantidad;
                 actualizarPrecioPorProducto(item);
                 calcularTotal();
-                syncCartWithView(); // <-- Actualiza localStorage
+                syncCartWithView(); 
             });
         }
     });
 
-    // Vaciar carrito
     document.getElementById('vaciar-carrito-btn').addEventListener('click', () => {
         localStorage.removeItem('cart');
         compraLista.innerHTML = '<li class="carrito-vacio">Carrito Vacío</li>';
@@ -128,7 +124,6 @@
         const total = document.getElementById('total-compra').textContent;
         if (cart.length === 0) return;
 
-        // Filtra solo los campos necesarios
         cart = cart.map(producto => ({
             name: producto.name,
             price: producto.price,

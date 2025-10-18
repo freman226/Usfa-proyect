@@ -4,7 +4,6 @@ require_once __DIR__ . '/../src/includes/db.php';
 
 header('Content-Type: application/json');
 
-// solo admin
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'admin') {
     echo json_encode(['success' => false, 'message' => 'No autorizado']);
     exit;
@@ -17,7 +16,6 @@ if ($id <= 0) {
 }
 
 try {
-    // obtener nombre de imagen para borrar archivo (opcional)
     $stmt = $pdo->prepare('SELECT image FROM products WHERE id = ?');
     $stmt->execute([$id]);
     $row = $stmt->fetch();
@@ -27,11 +25,9 @@ try {
     }
     $image = $row['image'];
 
-    // borrar registro
     $del = $pdo->prepare('DELETE FROM products WHERE id = ?');
     $del->execute([$id]);
 
-    // borrar archivo de imagen si no es default y existe
     if (!empty($image) && $image !== 'default.jpg') {
         $path = __DIR__ . '/img/' . $image;
         if (is_file($path)) @unlink($path);

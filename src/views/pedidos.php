@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/header.php';
 
-// obtener pedidos con nombre de usuario si existe
 $invoices = $pdo->query("
     SELECT i.*, u.username AS username_from_users
     FROM invoice i
@@ -18,7 +17,6 @@ $invoices = $pdo->query("
     <?php else: ?>
         <?php foreach ($invoices as $invoice): ?>
             <?php
-                // prioridad: username de users (JOIN), si no existe usar user_name almacenado o 'Anónimo'
                 $who = $invoice['username_from_users'] ?? $invoice['user_name'] ?? 'Anónimo';
             ?>
             <div class="pedido">

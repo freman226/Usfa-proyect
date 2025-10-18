@@ -1,8 +1,6 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\includes\init_db.php
 require_once __DIR__ . '/db.php';
 
-// Crear tabla products
 $sqlProducts = "CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -17,7 +15,6 @@ try {
     echo "Error al crear la tabla products: " . $e->getMessage();
 }
 
-// Crear tabla invoice
 $sqlInvoice = "CREATE TABLE IF NOT EXISTS invoice (
     id INT AUTO_INCREMENT PRIMARY KEY,
     products JSON NOT NULL,
@@ -31,7 +28,6 @@ try {
     echo "Error al crear la tabla invoice: " . $e->getMessage();
 }
 
-// crear tabla users (si no existe) con columna role
 $sqlUsers = "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -47,7 +43,6 @@ try {
     error_log("Error crear users: " . $e->getMessage());
 }
 
-// Si la tabla ya existía pero no tiene la columna role, añadirla
 $colCheck = $pdo->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'users' AND COLUMN_NAME = 'role'");
 $colCheck->execute();
 if ($colCheck->fetchColumn() == 0) {
@@ -58,10 +53,9 @@ if ($colCheck->fetchColumn() == 0) {
     }
 }
 
-// Opcional: crear un admin inicial si no existe (cambiar credenciales por defecto)
 $adminEmail = 'admin@email.com';
 $adminUser = 'admin';
-$adminPass = 'admin123'; // cambia esto ahora mismo
+$adminPass = 'admin123'; 
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
 $stmt->execute([$adminEmail]);
 if ($stmt->fetchColumn() == 0) {
@@ -74,7 +68,6 @@ if ($stmt->fetchColumn() == 0) {
     }
 }
 
-// Añadir columnas user_id y user_name a invoice si no existen
 $colCheck = $pdo->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'invoice' AND COLUMN_NAME = ?");
 $colCheck->execute(['user_id']);
 if ($colCheck->fetchColumn() == 0) {

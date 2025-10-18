@@ -3,7 +3,6 @@
 session_start();
 require_once __DIR__ . '/../src/includes/db.php';
 
-// Requerir admin
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'admin') {
     header('Location: index.php?page=login');
     exit;
@@ -19,13 +18,11 @@ $price = $_POST['price'] ?? '';
 $description = trim($_POST['description'] ?? '');
 $imageFilename = 'default.jpg';
 
-// Validación simple
 if ($name === '' || $price === '' || !is_numeric($price)) {
     echo "<script>alert('Datos inválidos.'); window.location.href='index.php?page=create_product';</script>";
     exit;
 }
 
-// Manejo de imagen si se sube
 if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $tmp = $_FILES['image']['tmp_name'];
     $origName = basename($_FILES['image']['name']);
@@ -39,7 +36,6 @@ if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     }
 }
 
-// Insertar en BD
 try {
     $stmt = $pdo->prepare("INSERT INTO products (name, image, description, price) VALUES (?, ?, ?, ?)");
     $stmt->execute([$name, $imageFilename, $description, $price]);

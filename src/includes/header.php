@@ -6,6 +6,8 @@
     <title>Tienda de Guitarras</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script type="module" src="/js/main.js"></script>
+
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <header>

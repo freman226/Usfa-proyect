@@ -1,8 +1,6 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\controllers\save_invoice.php
 require_once __DIR__ . '/../includes/db.php';
 
-// asegurar sesión
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total = $_POST['total'] ?? 0;
     $order_date = date('Y-m-d H:i:s');
 
-    // obtener usuario en sesión si existe
     $user_id = $_SESSION['user_id'] ?? null;
     $user_name = $_SESSION['username'] ?? null;
 

@@ -1,5 +1,4 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\public\register.php
 require_once '../src/includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,12 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = trim($_POST['fullname'] ?? '');
     $address = trim($_POST['address'] ?? '');
 
-    // Validación básica
     if ($username && $email && $password && $fullname && $address) {
-        // Encriptar la contraseña
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insertar usuario
         $stmt = $pdo->prepare("INSERT INTO users (username, email, password, fullname, address) VALUES (?, ?, ?, ?, ?)");
         try {
             $stmt->execute([$username, $email, $hashedPassword, $fullname, $address]);

@@ -1,5 +1,4 @@
 <?php
-// filepath: d:\Programación\Php\Proyecto USFA\tienda-guitarras\src\includes\db.php
 $host = 'localhost';
 $db   = 'tienda_guitarras';
 $user = 'root';

@@ -1,11 +1,8 @@
 <?php
-// Cerrar sesión en servidor
 session_start();
 
-// Vaciar variables de sesión
 $_SESSION = [];
 
-// Eliminar cookie de sesión
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(session_name(), '', time() - 42000,
@@ -14,10 +11,8 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Destruir sesión
 session_destroy();
 
-// Responder con JS que limpia localStorage y redirige al login
 ?>
 <!doctype html>
 <html lang="es">
@@ -28,7 +23,6 @@ session_destroy();
 <body>
 <script>
     try { localStorage.removeItem('cart'); } catch(e) {}
-    // Redirigir a la vista de login (ajusta la URL si tu enrutado es distinto)
     window.location.href = 'index.php?page=login';
 </script>
 </body>
