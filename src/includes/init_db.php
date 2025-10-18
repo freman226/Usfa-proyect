@@ -73,4 +73,15 @@ if ($stmt->fetchColumn() == 0) {
         error_log("Error insert admin: " . $e->getMessage());
     }
 }
+
+// Añadir columnas user_id y user_name a invoice si no existen
+$colCheck = $pdo->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'invoice' AND COLUMN_NAME = ?");
+$colCheck->execute(['user_id']);
+if ($colCheck->fetchColumn() == 0) {
+    $pdo->exec("ALTER TABLE invoice ADD COLUMN user_id INT NULL");
+}
+$colCheck->execute(['user_name']);
+if ($colCheck->fetchColumn() == 0) {
+    $pdo->exec("ALTER TABLE invoice ADD COLUMN user_name VARCHAR(255) NULL");
+}
 ?>
