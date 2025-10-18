@@ -22,16 +22,15 @@
                 <span class="user-icon">
                     <img src="/img/user.png" alt="Usuario" />
                     <div class="user-menu">
-                        <a href="index.php?page=pedidos">Pedidos</a>
+                        <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                            <a href="index.php?page=pedidos">Pedidos</a>
+                            <a href="index.php?page=create_product">Crear producto</a>
+                        <?php endif; ?>
                         <a href="/logout.php">Cerrar Sesión</a>
                     </div>
                 </span>
                 <span class="username-header"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
             </span>
-            <?php endif; ?>
-
-            <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                <a href="index.php?page=create_product" class="admin-link">Crear producto</a>
             <?php endif; ?>
         </div>
     </header>

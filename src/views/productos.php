@@ -24,8 +24,15 @@ $productos = getProductos();
                 </div>
 
                 <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <button class="edit-btn" title="Editar producto" aria-label="Editar">
+                        <!-- Ícono lápiz (SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
+                    </button>
+
                     <button class="delete-btn" title="Eliminar producto" aria-label="Eliminar">
-                        <!-- Ícono de bote de basura (SVG) -->
+                        <!-- Ícono basura (SVG) -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
                             <path d="M3 6h18v2H3V6zm2 3h14l-1 11H6L5 9zm5-8h4v2h-4V4z"/>
                         </svg>
@@ -59,6 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             alert('Producto añadido al carrito');
+        });
+    });
+
+    // navegación al editar
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const productDiv = this.closest('.producto');
+            const id = productDiv.getAttribute('data-id');
+            // redirige a la vista de edición (index.php enrutará a la vista)
+            window.location.href = 'index.php?page=edit_product&id=' + encodeURIComponent(id);
         });
     });
 

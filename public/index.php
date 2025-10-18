@@ -48,6 +48,9 @@ switch ($page) {
     case 'create_product':
         require_once __DIR__ . '/../src/views/create_product.php';
         break;
+    case 'edit_product':                 // <-- añadir esto
+        require_once __DIR__ . '/../src/views/edit_product.php';
+        break;
     default:
         require_once __DIR__ . '/../src/views/productos.php';
         break;

@@ -725,3 +725,39 @@ footer {
 @media (max-width: 520px) {
     .delete-btn { right: 12px; bottom: 12px; width: 34px; height: 34px; }
 }
+
+.edit-btn {
+    position: absolute;
+    right: 68px; /* a la izquierda del delete-btn */
+    bottom: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #43a047; /* verde */
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, transform .08s;
+    padding: 0;
+}
+
+.edit-btn svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #388e3c;
+    transform: translateY(-2px);
+}
+
+/* ajustar en móvil si hace falta */
+@media (max-width: 520px) {
+    .edit-btn { right: 56px; bottom: 12px; width: 36px; height: 36px; }
+}
